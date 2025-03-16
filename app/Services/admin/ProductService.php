@@ -62,6 +62,11 @@ class ProductService
             $data['image'] = $path;
         }
 
-        return $this->categoryRepository->update($data, $id);
+        return $this->repository->update($data, $id);
+    }
+
+    public function deleteData($id){
+
+        return $this->repository->delete($id);
     }
 }

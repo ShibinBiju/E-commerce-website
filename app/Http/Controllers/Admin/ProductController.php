@@ -58,12 +58,24 @@ class ProductController extends Controller
             $result = $this->service->updateData($updateRequest->validated(), $id);
     
             if ($result) {
-                return redirect()->route('category.index')->with('success', 'Category updated successfully');
+                return redirect()->route('product.index')->with('success', 'Product updated successfully');
             } else {
                 return redirect()->back()->with('error', 'Error occurred while updating!');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
+        }
+    }
+
+    public function delete($id) {
+        try {
+            $result = $this->service->deleteData($id);
+    
+            return $result
+                ? redirect()->route('product.index')->with('success', 'Category deleted successfully!')
+                : redirect()->back()->with('error', 'Failed to delete the category.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong! Please try again.');
         }
     }
 
