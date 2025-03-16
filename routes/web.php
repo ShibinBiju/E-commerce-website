@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrdersListController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
@@ -40,6 +41,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::patch('product/{id}', [productController::class, 'update'])->name('product.update');
     Route::delete('product/{id}', [productController::class, 'delete'])->name('product.delete');
+
+
+    Route::get('orders-list', [OrdersListController::class, 'index'])->name('ordersList.index');
+    Route::post('orders-list', [OrdersListController::class, 'store'])->name('ordersList.store');
+    Route::get('orders-list/create', [OrdersListController::class, 'create'])->name('ordersList.create');
+    Route::get('orders-list/edit/{id}', [OrdersListController::class, 'edit'])->name('ordersList.edit');
+    Route::patch('orders-list/{id}', [OrdersListController::class, 'update'])->name('ordersList.update');
+    Route::delete('orders-list/{id}', [OrdersListController::class, 'delete'])->name('ordersList.delete');
 
 });
 

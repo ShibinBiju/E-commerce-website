@@ -20,11 +20,15 @@
                         <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
                             {{ __('Category') }}
                         </x-nav-link>
-                    @endif
-                    @if(auth()->user()->role == 'admin') 
                         <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
-                            {{ __('product') }}
+                            {{ __('Product') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('ordersList.index')" :active="request()->routeIs('ordersList.index')">
+                            {{ __('Orders List') }}
+                        </x-nav-link>
+                    @endif
+                    @if(auth()->user()->role == 'customer') 
+                    
                     @endif
                 </div>
             </div>
