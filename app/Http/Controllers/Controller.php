@@ -26,6 +26,6 @@ class Controller extends BaseController
 
     public function dashboard(){
 
-      return  $this->controllerService->dashboardView();
+      return $this->controllerService->dashboardView();
     }
 }
