@@ -36,15 +36,17 @@ class ProductRepository
         return $this->product->find($id);
     }
 
-    public function update($data, $id){
+    public function update($data, $id)
+    {
 
 
         return $this->product->findOrFail($id)->update($data);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
 
- 
+
         return $this->product->findOrFail($id)->delete($id);
     }
 }

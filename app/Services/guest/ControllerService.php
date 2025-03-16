@@ -9,7 +9,6 @@ class ControllerService
 {
 
 
-
     protected $repository;
 
 
@@ -24,9 +23,11 @@ class ControllerService
         return $this->repository->all();
     }
 
-    public function dashboardView(){
-        
-        return view((Auth::user()->role == 'admin') ? 'admin.index' : 'customer.index');
+    public function dashboardView()
+    {
+        return Auth::user()->role == 'admin'
+            ? view('admin.index')
+            : redirect()->route('order.index');
     }
     
     

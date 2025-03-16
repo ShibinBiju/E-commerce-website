@@ -28,9 +28,9 @@
                         </x-nav-link>
                     @endif
                     @if(auth()->user()->role == 'customer') 
-                    {{-- <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
-                        {{ __('Category') }}
-                    </x-nav-link> --}}
+                    <x-nav-link :href="route('cartList.index')" :active="request()->routeIs('cartList.index')">
+                        {{ __('Cart List') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -101,7 +101,9 @@
             @endif
 
             @if(auth()->user()->role == 'customer')
-       
+            <x-responsive-nav-link :href="route('cartList.index')" :active="request()->routeIs('cartList.index')">
+                {{ __('Cart List') }}
+            </x-responsive-nav-link>
         @endif
 
             

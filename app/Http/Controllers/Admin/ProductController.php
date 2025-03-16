@@ -36,9 +36,9 @@ class ProductController extends Controller
      
              return redirect()
                  ->route('product.index')
-                 ->with('success', 'Category created successfully!');
+                 ->with('success', 'Product created successfully!');
          } catch (\Exception $e) {
-             \Log::error('Category Store Error: ' . $e->getMessage()); // Log the error
+             \Log::error('Product Store Error: ' . $e->getMessage()); // Log the error
      
              return redirect()->back()->with('error', 'Something went wrong! Please try again.');
          }
@@ -72,7 +72,7 @@ class ProductController extends Controller
             $result = $this->service->deleteData($id);
     
             return $result
-                ? redirect()->route('product.index')->with('success', 'Category deleted successfully!')
+                ? redirect()->route('product.index')->with('success', 'Product deleted successfully!')
                 : redirect()->back()->with('error', 'Failed to delete the category.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong! Please try again.');

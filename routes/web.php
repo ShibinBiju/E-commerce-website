@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrdersListController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Customer\CartListController;
+use App\Http\Controllers\customer\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('orders-list/edit/{id}', [OrdersListController::class, 'edit'])->name('ordersList.edit');
     Route::patch('orders-list/{id}', [OrdersListController::class, 'update'])->name('ordersList.update');
     Route::delete('orders-list/{id}', [OrdersListController::class, 'delete'])->name('ordersList.delete');
+
+});
+
+
+Route::middleware('auth')->prefix('customer')->group(function () {
+    Route::get('cart-list', [CartListController::class, 'index'])->name('cartList.index');
+    Route::post('cart-list', [CartListController::class, 'store'])->name('cartList.store');
+    Route::delete('cart-list/{id}', [CartListController::class, 'delete'])->name('cartList.delete');
+
+
+    Route::get('order', [OrderController::class, 'index'])->name('order.index');
+    Route::post('order', [OrderController::class, 'store'])->name('order.store');
 
 });
 

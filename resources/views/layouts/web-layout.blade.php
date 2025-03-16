@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <title>E-Shop - Products</title>
     <!-- Include Tailwind CSS -->
 
@@ -20,6 +22,9 @@
                 @auth
                     <li>
                         <a href="{{ url('/dashboard') }}" class="hover:text-blue-500">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('cartList.index') }}" class="hover:text-blue-500">Your Cart!</a>
                     </li>
                 @else
                     <li>
