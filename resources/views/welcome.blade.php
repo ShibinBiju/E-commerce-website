@@ -3,59 +3,48 @@
     <!-- Product Section with background #111827 -->
     <section class="container mx-auto px-4 py-8 bg-[#111827]">
         <h2 class="text-2xl font-bold mb-6">Products</h2>
+
+        
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Product Card 1 -->
-            <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/350x200" alt="Product Name" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold">Product Name</h3>
-                    <p class="mt-2 text-gray-300">
-                        A brief description of the product goes here. Highlight key features.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between">
-                        <span class="text-lg font-bold">$29.99</span>
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Product Card 2 -->
+            @if(count($products) > 0)
+            @foreach ($products as $item)
             <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/350x200" alt="Another Product" class="w-full h-48 object-cover">
+                <img src="{{ asset('storage/' . $item->image) }}" alt="Product Name" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="text-xl font-semibold">Another Product</h3>
-                    <p class="mt-2 text-gray-300">
-                        Short description goes here.
+                    <h3 class="text-xl font-semibold">{{$item->name}}</h3>
+                  
+                    <p class="d-inline-block text-truncate mt-2 text-gray-300" style="max-width: 300px;" data-bs-toggle="tooltip" title="{{ $item->description }}">
+                        {{ \Illuminate\Support\Str::words($item->description, 10, '...') }}
                     </p>
                     <div class="mt-4 flex items-center justify-between">
-                        <span class="text-lg font-bold">$39.99</span>
+                        <span class="text-lg font-bold">₹ {{$item->price}}</span>
                         <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
                             Add to Cart
                         </button>
                     </div>
                 </div>
             </div>
+            @endforeach
+            @else
+            <h3 class="text-xl font-semibold text-red-500">No Products Added!</h3>
+            @endif
+       
 
-            <!-- Product Card 3 -->
-            <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-                <img src="https://via.placeholder.com/350x200" alt="Third Product" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold">Third Product</h3>
-                    <p class="mt-2 text-gray-300">
-                        Another product description goes here.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between">
-                        <span class="text-lg font-bold">$49.99</span>
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- You can add more product cards here -->
+          
         </div>
     </section>
+
+    <script>
+   
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
+ 
 
 </x-web-layout>

@@ -28,7 +28,9 @@
                         </x-nav-link>
                     @endif
                     @if(auth()->user()->role == 'customer') 
-                    
+                    {{-- <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                        {{ __('Category') }}
+                    </x-nav-link> --}}
                     @endif
                 </div>
             </div>
@@ -90,13 +92,19 @@
                 <x-responsive-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
                     {{ __('Category') }}
                 </x-responsive-nav-link>
-            @endif
-
-            @if(auth()->user()->role == 'admin')
                 <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
                     {{ __('product') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('ordersList.index')" :active="request()->routeIs('ordersList.index')">
+                    {{ __('Orders List') }}
+                </x-responsive-nav-link>
             @endif
+
+            @if(auth()->user()->role == 'customer')
+       
+        @endif
+
+            
         </div>
 
         <!-- Responsive Settings Options -->
@@ -115,12 +123,16 @@
                     <x-responsive-nav-link :href="route('category.index')">
                         {{ __('Category') }}
                     </x-responsive-nav-link>
-                @endif
-                @if(auth()->user()->role == 'admin')
                     <x-responsive-nav-link :href="route('product.index')">
                         {{ __('product') }}
                     </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('ordersList.index')">
+                        {{ __('Orders List') }}
+                    </x-responsive-nav-link>
                 @endif
+
+                
+
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

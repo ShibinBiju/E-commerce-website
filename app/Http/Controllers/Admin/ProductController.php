@@ -35,7 +35,7 @@ class ProductController extends Controller
              $this->service->storeData($request->validated());
      
              return redirect()
-                 ->route('category.index')
+                 ->route('product.index')
                  ->with('success', 'Category created successfully!');
          } catch (\Exception $e) {
              \Log::error('Category Store Error: ' . $e->getMessage()); // Log the error

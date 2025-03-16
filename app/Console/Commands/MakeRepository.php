@@ -13,7 +13,7 @@ class MakeRepository extends Command
     public function handle()
     {
         $name = str_replace('\\', '/', $this->argument('name')); // Support namespace-like input
-        $path = app_path("Repositories/{$name}Repository.php");
+        $path = app_path("Repositories/{$name}.php");
 
         if (File::exists($path)) {
             $this->error("Repository {$name} already exists!");
@@ -24,7 +24,7 @@ class MakeRepository extends Command
         File::ensureDirectoryExists(dirname($path));
 
         // Extract class name from the full path
-        $className = basename($name) . 'Repository';
+        $className = basename($name);
         $namespace = 'App\\Repositories' . (dirname($name) !== '.' ? '\\' . str_replace('/', '\\', dirname($name)) : '');
 
         $template = <<<PHP

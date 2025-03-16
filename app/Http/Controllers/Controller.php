@@ -21,7 +21,8 @@ class Controller extends BaseController
 
     public function index(){
 
-        return view('welcome');
+      $products = $this->controllerService->indexData();
+        return view('welcome', compact('products'));
     }
 
     public function dashboard(){
