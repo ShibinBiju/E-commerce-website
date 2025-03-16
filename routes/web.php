@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('category', [CategoryController::class, 'store'])->name('category.store');
     Route::patch('category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
+
+    Route::get('product', [productController::class, 'index'])->name('product.index');
+    Route::post('product', [productController::class, 'store'])->name('product.store');
+    Route::get('product/create', [productController::class, 'create'])->name('product.create');
+    Route::get('product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::patch('product/{id}', [productController::class, 'update'])->name('product.update');
+    Route::delete('product/{id}', [productController::class, 'delete'])->name('product.delete');
 
 });
 

@@ -21,6 +21,11 @@
                             {{ __('Category') }}
                         </x-nav-link>
                     @endif
+                    @if(auth()->user()->role == 'admin') 
+                        <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
+                            {{ __('product') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -82,6 +87,12 @@
                     {{ __('Category') }}
                 </x-responsive-nav-link>
             @endif
+
+            @if(auth()->user()->role == 'admin')
+                <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
+                    {{ __('product') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -99,6 +110,11 @@
                 @if(auth()->user()->role == 'admin')
                     <x-responsive-nav-link :href="route('category.index')">
                         {{ __('Category') }}
+                    </x-responsive-nav-link>
+                @endif
+                @if(auth()->user()->role == 'admin')
+                    <x-responsive-nav-link :href="route('product.index')">
+                        {{ __('product') }}
                     </x-responsive-nav-link>
                 @endif
 

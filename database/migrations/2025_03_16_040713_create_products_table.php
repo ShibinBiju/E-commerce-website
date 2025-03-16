@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->decimal('price', 10, 2);
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->unsignedBigInteger('category_id'); // Foreign key column
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
