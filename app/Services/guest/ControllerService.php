@@ -26,7 +26,7 @@ class ControllerService
     public function dashboardView()
     {
         return Auth::user()->role == 'admin'
-            ? view('admin.index')
+            ? redirect()->route('category.index')
             : redirect()->route('order.index');
     }
     
